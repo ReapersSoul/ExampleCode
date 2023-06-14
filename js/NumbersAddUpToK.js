@@ -1,9 +1,10 @@
+"use strict";
 //works as long as each number in the list is unique
-function NumbersAddUpToKTrueFalse(Numbers: number[], K: number) {
+function NumbersAddUpToKTrueFalse(Numbers, K) {
     //map to store the possible combinations that add to k
-    let NumMap = new Map<number, any>();
+    var NumMap = new Map();
     //loop through list of numbers
-    for (let i = 0; i < Numbers.length; i++) {
+    for (var i = 0; i < Numbers.length; i++) {
         //add entry to map of the current number and the number that would add up to k
         NumMap.set(Numbers[i], { Index: i, Value: K - Numbers[i] });
         //if the map contains the number that would add up to k then we can return true
@@ -17,15 +18,14 @@ function NumbersAddUpToKTrueFalse(Numbers: number[], K: number) {
     //didnt find a solution
     return false;
 }
-
 //works as long as each number in the list is unique
-function NumbersAddUpToKList(Numbers: number[], K: number) {
+function NumbersAddUpToKList(Numbers, K) {
     //list for storing combinations in the nummber list that add up to k
-    var RetList: any = [];
+    var RetList = [];
     //map to store the possible combinations that add to k
-    let NumMap = new Map<number, any>();
+    var NumMap = new Map();
     //loop through list of numbers
-    for (let i = 0; i < Numbers.length; i++) {
+    for (var i = 0; i < Numbers.length; i++) {
         //add entry to map of the current number and the number that would add up to k
         NumMap.set(Numbers[i], { Index: i, Value: K - Numbers[i] });
         //if the map contains the number that would add up to k then we can add the combination to the return list
@@ -42,18 +42,17 @@ function NumbersAddUpToKList(Numbers: number[], K: number) {
     }
     return RetList;
 }
-
-function NumbersAddUpToKListNotUnique(Numbers: number[], K: number) {
+function NumbersAddUpToKListNotUnique(Numbers, K) {
     //list for storing combinations in the nummber list that add up to k
-    var RetList: any = [];
+    var RetList = [];
     //map to store the possible combinations that add to k
-    var NumMap: any = [];
+    var NumMap = [];
     //loop through list of numbers
-    for (let i = 0; i < Numbers.length; i++) {
+    for (var i = 0; i < Numbers.length; i++) {
         //add entry to map of the current number and the number that would add up to k
         NumMap.push({ Index: i, Value: Numbers[i], Companion: K - Numbers[i] });
         //check NumMap to see if the current Number matches any companions
-        for (let j = 0; j < NumMap.length; j++) {
+        for (var j = 0; j < NumMap.length; j++) {
             if (i != NumMap[j].Index) {
                 if (Numbers[i] == NumMap[j].Companion) {
                     RetList.push({ Values: [NumMap[j].Value, Numbers[i]], Indecies: [NumMap[j].Index, i] });
@@ -67,12 +66,8 @@ function NumbersAddUpToKListNotUnique(Numbers: number[], K: number) {
     }
     return RetList;
 }
-
 console.log(NumbersAddUpToKTrueFalse([1, 2, 3, 4, 12, 312], 3));
-
 console.log(NumbersAddUpToKList([1, 2, 3, 4, 12, -8, 312], 4));
-
 console.log(NumbersAddUpToKListNotUnique([1, 2, 2, 3, 4, 12, -8, 312], 4));
-
-var _={NumbersAddUpToKTrueFalse, NumbersAddUpToKList, NumbersAddUpToKListNotUnique};
+var _ = { NumbersAddUpToKTrueFalse: NumbersAddUpToKTrueFalse, NumbersAddUpToKList: NumbersAddUpToKList, NumbersAddUpToKListNotUnique: NumbersAddUpToKListNotUnique };
 module.exports = _;
