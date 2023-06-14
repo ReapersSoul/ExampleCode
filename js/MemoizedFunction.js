@@ -12,6 +12,7 @@ function MemoizedCall(fn) {
     for (var _i = 1; _i < arguments.length; _i++) {
         args[_i - 1] = arguments[_i];
     }
+    var Memoized = true;
     if (Memos == undefined) {
         Memos = {};
     }
@@ -21,10 +22,10 @@ function MemoizedCall(fn) {
         Memos[key] = {};
     }
     if (Memos[key][SubKey] == undefined) {
-        console.log("UnMemoizedCall: " + key + " " + SubKey);
+        Memoized = false;
         Memos[key][SubKey] = fn.apply(void 0, args);
     }
-    return Memos[key][SubKey];
+    return { Value: Memos[key][SubKey], WasMemoized: Memoized };
 }
 //test
 console.log(MemoizedCall(Sum, 1, 2));
@@ -32,4 +33,4 @@ console.log(MemoizedCall(Sum, 1, 2));
 console.log(MemoizedCall(Sum, 3, 2));
 console.log(MemoizedCall(Sum, 3, 2));
 console.log(Memos);
-module.exports = MemoizedCall;
+module.exports = { MemoizedCall: MemoizedCall, Memos: Memos, Sum: Sum, Fib: Fib, Factorial: Factorial };

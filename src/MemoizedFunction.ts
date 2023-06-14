@@ -13,6 +13,7 @@ function Factorial(n:number) {
 
 var Memos:any;
 function MemoizedCall(fn:Function,...args:any) {
+    var Memoized:boolean=true;
     if(Memos == undefined) {
         Memos = {};
     }
@@ -22,10 +23,10 @@ function MemoizedCall(fn:Function,...args:any) {
         Memos[key] = {};
     }
     if(Memos[key][SubKey] == undefined) {
-        console.log("UnMemoizedCall: " + key + " " + SubKey);
+        Memoized=false;
         Memos[key][SubKey] = fn(...args);
     }
-    return Memos[key][SubKey];
+    return {Value:Memos[key][SubKey],WasMemoized:Memoized};
 }
 
 //test
@@ -35,4 +36,4 @@ console.log(MemoizedCall(Sum,3,2));
 console.log(MemoizedCall(Sum,3,2));
 console.log(Memos);
 
-module.exports = MemoizedCall;
+module.exports = {MemoizedCall,Memos,Sum,Fib,Factorial};
