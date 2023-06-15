@@ -66,8 +66,5 @@ function NumbersAddUpToKListNotUnique(Numbers, K) {
     }
     return RetList;
 }
-console.log(NumbersAddUpToKTrueFalse([1, 2, 3, 4, 12, 312], 3));
-console.log(NumbersAddUpToKList([1, 2, 3, 4, 12, -8, 312], 4));
-console.log(NumbersAddUpToKListNotUnique([1, 2, 2, 3, 4, 12, -8, 312], 4));
 var _ = { NumbersAddUpToKTrueFalse: NumbersAddUpToKTrueFalse, NumbersAddUpToKList: NumbersAddUpToKList, NumbersAddUpToKListNotUnique: NumbersAddUpToKListNotUnique };
 module.exports = _;

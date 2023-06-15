@@ -29,8 +29,4 @@ function TestPalendrome(PrintTests:boolean) {
     return Test1Result&&Test2Result&&Test3Result&&!(Test4Result&&Test5Result);
 }
 
-
-
-console.log(`Is The IsPalendrome function working properly?: ${(TestPalendrome(true))?"yes":"no"}.`);
-
 module.exports = IsPalendrome;

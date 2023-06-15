@@ -28,5 +28,4 @@ function TestPalendrome(PrintTests) {
     //return true if all test cases matched their expected results
     return Test1Result && Test2Result && Test3Result && !(Test4Result && Test5Result);
 }
-console.log("Is The IsPalendrome function working properly?: ".concat((TestPalendrome(true)) ? "yes" : "no", "."));
 module.exports = IsPalendrome;
