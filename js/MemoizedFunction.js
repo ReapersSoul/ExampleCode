@@ -3,8 +3,16 @@ function Sum(one, two) {
     return one + two;
 }
 function Fib(n) {
+    if (n <= 1) {
+        return 1;
+    }
+    return Fib(n - 1) + Fib(n - 2);
 }
 function Factorial(n) {
+    if (n == 0) {
+        return 1;
+    }
+    return n * Factorial(n - 1);
 }
 function MemoizedCall(Memos, fn) {
     var args = [];
