@@ -6,7 +6,7 @@ function Sum(one:number,two:number):number {
 function Fib(n:number):number {
     if (n <= 1) {
         return 1;
-      }
+    }
     return Fib(n - 1) + Fib(n - 2);
 }
 
