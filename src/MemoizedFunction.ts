@@ -11,29 +11,21 @@ function Factorial(n:number) {
     
 }
 
-var Memos:any;
-function MemoizedCall(fn:Function,...args:any) {
-    var Memoized:boolean=true;
-    if(Memos == undefined) {
+function MemoizedCall(Memos:any,fn:Function,...args:any) {
+    if(!Memos) {
         Memos = {};
     }
-    var key = fn.name;
+    var Memoized:boolean=true;
+    var key:string = fn.name;
     var SubKey = args.toString();
-    if(Memos[key] == undefined) {
+    if(!Memos[key]) {
         Memos[key] = {};
     }
-    if(Memos[key][SubKey] == undefined) {
+    if(!Memos[key][SubKey]) {
         Memoized=false;
         Memos[key][SubKey] = fn(...args);
     }
     return {Value:Memos[key][SubKey],WasMemoized:Memoized};
 }
 
-//test
-console.log(MemoizedCall(Sum,1,2));
-console.log(MemoizedCall(Sum,1,2));
-console.log(MemoizedCall(Sum,3,2));
-console.log(MemoizedCall(Sum,3,2));
-console.log(Memos);
-
-module.exports = {MemoizedCall,Memos,Sum,Fib,Factorial};
+module.exports = {MemoizedCall,Sum,Fib,Factorial};

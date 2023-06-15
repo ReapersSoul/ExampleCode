@@ -6,31 +6,24 @@ function Fib(n) {
 }
 function Factorial(n) {
 }
-var Memos;
-function MemoizedCall(fn) {
+function MemoizedCall(Memos, fn) {
     var args = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        args[_i - 1] = arguments[_i];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        args[_i - 2] = arguments[_i];
     }
-    var Memoized = true;
-    if (Memos == undefined) {
+    if (!Memos) {
         Memos = {};
     }
+    var Memoized = true;
     var key = fn.name;
     var SubKey = args.toString();
-    if (Memos[key] == undefined) {
+    if (!Memos[key]) {
         Memos[key] = {};
     }
-    if (Memos[key][SubKey] == undefined) {
+    if (!Memos[key][SubKey]) {
         Memoized = false;
         Memos[key][SubKey] = fn.apply(void 0, args);
     }
     return { Value: Memos[key][SubKey], WasMemoized: Memoized };
 }
-//test
-console.log(MemoizedCall(Sum, 1, 2));
-console.log(MemoizedCall(Sum, 1, 2));
-console.log(MemoizedCall(Sum, 3, 2));
-console.log(MemoizedCall(Sum, 3, 2));
-console.log(Memos);
-module.exports = { MemoizedCall: MemoizedCall, Memos: Memos, Sum: Sum, Fib: Fib, Factorial: Factorial };
+module.exports = { MemoizedCall: MemoizedCall, Sum: Sum, Fib: Fib, Factorial: Factorial };
