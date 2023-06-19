@@ -34,4 +34,19 @@ function MemoizedCall(Memos:any,fn:Function,...args:any) {
     return {Value:Memos[key][SubKey],WasMemoized:Memoized};
 }
 
+type Fn = (...params: any) => any
+
+function MemoizedFunction(fn: Fn):Fn {
+        return ((...params: any) => {
+            const Memos:Map<string,any> = new Map();
+            var key:string= params.join().toString();
+            if(Memos.has(key)){
+                return Memos.get(key);
+            }
+            var result = fn(...params);
+            Memos.set(key,result);
+            return key => result;
+        })();
+}
+
 module.exports = {MemoizedCall,Sum,Fib,Factorial};
